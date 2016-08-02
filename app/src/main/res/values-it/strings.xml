@@ -209,7 +209,9 @@
 
     <string name="warning_installed_on_external_storage">Questo modulo non può essere caricato perché è installato nella memoria SD, per favore spostalo nella memoria interna</string>
     <string name="warning_forward_locked">Questo modulo non può essere caricato perché è forward-locked, perfavore contatta lo sviluppatore del modulo.</string>
-
+    <string name="enable_heads_up">Abilita le notifiche Heads-Up</string>
+    <string name="enable_heads_up_summary">Questa opzione abilita la notifica heads up ad ogni nuovo/aggiornato modulo</string>
+    <string name="choose_color">Scegli un colore…</string>
 
     <!-- Support tab -->
     <string name="support_modules_label">Supporto per i moduli</string>
@@ -233,7 +235,7 @@
     <string name="export_modules">Esporta lista moduli abilitati</string>
     <string name="import_modules">Importa lista moduli abilitati</string>
     <string name="view">VEDI</string>
-
+    <string name="nav_bar_coloration">Colora la barra di navigazione</string>
 
     <string name="download_view_size">Dimensione: %s KB</string>
     <string name="share">Condividi con…</string>
@@ -242,18 +244,18 @@
     <string name="downloadZipOk">%1$s scaricato correttamente</string>
     <string name="help">Aiuto</string>
     <string name="info">Info</string>
-    <string name="infoInstaller">Nome: %1$s         \nSDK: %2$s         \nArchittettura: %3$s         \nVersione: %4$s</string>
+    <string name="infoInstaller">Nome: %1$s         \nSDK: %2$d         \nArchittettura: %3$s         \nVersione: %4$s</string>
     <string name="infoUninstaller">Nome: %1$s         \nArchittettura: %2$s         \nData: %3$s</string>
-    <string name="loadingError">Si è verificato un errore nel caricamento della lista degli installer/uninstaller dispnibili.\nNon è possibile accedere a Internet o è un bug lato server</string>
+    <string name="loadingError">Si è verificato un errore nel caricamento della lista degli installer/uninstaller disponibili.\nNon è possibile accedere a Internet o è un bug lato server</string>
     <string name="permissionGranted">Permesso concesso</string>
     <string name="permissionNotGranted">Questa funzionalità non funzionerà senza il permesso di scrittura della memoria esterna.</string>
     <string name="selectFile">Seleziona il file scaricato</string>
     <string name="warningArchitecture">HAI SCELTO L\' ARCHITTETTURA GIUSTA DELLO ZIP?\nUno zip sbagliato può danneggiare il tuo telefono!</string>
     <string name="xposedZipNotFound">File zip non trovato, probabilmemente una nuova versione è stata rilasciata.</string>
-
+    <string name="newVersion">Una nuova versione di Xposed Installer è disponibile! Aggiorna!</string>
     <string name="update">Aggiorna</string>
-
-
+    <string name="choose_icon">Scegli un\' icona</string>
+    <string name="custom_icon">Icona personalizzata</string>
     <string name="installationForbidden">L\' installazione non è possibile su questo dispositivo. Per installare Xposed attraverso questa app, il dispositivo deve avere Android Lollipop o superiore.</string>
     <string name="installed_no_lollipop">Xposed Framework è installato.</string>
     <string name="not_installed_no_lollipop">Xposed Framework non è installato.</string>
@@ -299,8 +301,6 @@
     <string name="status">Stato Xposed</string>
     <string name="xposed_off_next_reboot">Xposed Framework sarà disabilitato al prossimo riavvio</string>
     <string name="xposed_on_next_reboot">Xposed Framework sarà abilitato al prossimo riavvio</string>
-
-
     <string name="skip_xposedminversion_check">Salta controllo \'xposedminversion\' </string>
     <string name="skip_xposedminversion_check_summ">Salta controllo \'xposedminversion\' per i moduli</string>
     <string name="details">Dettagli</string>
@@ -310,5 +310,12 @@
     <string name="installation_started">Installazione partita</string>
     <string name="not_flashable_inapp">Questo file zip non può essere flashato in questa app. Installazione automatica in recovery</string>
 
+    <string name="systemless_compatibility">Tutte le AOSP-based ROM, Samsung ROM; dispositivi Nexus, LG, HTC, Asus, Pixel C</string>
+    <string name="systemless_incompatibility">Nessuna incompatibilità</string>
+    <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
+    <string name="download_location">Locazione downloads</string>
+    <string name="download_location_summ">Locazione download per i file APK (solo moduli)</string>
+    <string name="update_download_list">La lista dei download verrà caricata in pochi secondi</string>
+    <string name="no_connection_available">Nessuna connessione disponibile</string>
 
 </resources>

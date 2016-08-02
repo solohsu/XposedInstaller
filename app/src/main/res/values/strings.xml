@@ -230,18 +230,18 @@
     <string name="import_enabled_modules">Import enabled modules list</string>
     <string name="export_installed_modules">Export installed modules list</string>
     <string name="import_installed_modules">Import installed modules list</string>
-    <string name="no_installed_modules">There isn\'t any installed module!</string>
+    <string name="no_installed_modules">There are no installed modules!</string>
     <string name="no_backup_found">No backup found</string>
-    <string name="no_enabled_modules">There is any modules enabled</string>
+    <string name="no_enabled_modules">There are no modules enabled</string>
 
     <string name="download_view_size">Size: %s KB</string>
     <string name="share">Share with…</string>
     <string name="back">Back</string>
-    <string name="loadingError">Error getting list of installers/uninstallers.\nCannot access Internet, or server bug</string>
+    <string name="loadingError">Error getting the list of installers/uninstallers.\nCannot access Internet, or server has a bug</string>
     <string name="info">Info</string>
     <string name="infoInstaller">
         Name: %1$s
-        \nSDK: %2$s
+        \nSDK: %2$d
         \nArchitecture: %3$s
         \nVersion: %4$s
     </string>
@@ -256,20 +256,10 @@
     <string name="downloadUninstaller">Download uninstaller</string>
     <string name="selectFile">Select downloaded file</string>
     <string name="xposedZipNotFound">Zip not found, probably a new version released.</string>
-    <string name="warningArchitecture">HAVE YOU CHOSEN RIGHT XPOSED ZIP ARCHITECTURE?\nWrong zip can damage your phone!</string>
+    <string name="warningArchitecture">HAVE YOU CHOSEN THE RIGHT XPOSED ZIP ARCHITECTURE?\nWrong zip can damage your phone!</string>
     <string name="help">Help</string>
-    <string name="helpChoose">
-        How to choose correct zip file?\n
-
-        xposed-v*-sdk%%SDK%%-%%ARCH%%\n\n
-
-        Where:\n
-        %%SDK%% is your Android SDK version\n\n
-        %%ARCH%% is your device CPU architecture
-    </string>
     <string name="newVersion">New version of Xposed Installer is available! Update it!</string>
     <string name="update">Update</string>
-
     <string name="installationForbidden">Installation is not possible on this device. To install Xposed through this app, the device must run Android Lollipop or higher.</string>
     <string name="installed_no_lollipop">Xposed Framework is installed.</string>
     <string name="not_installed_no_lollipop">Xposed Framework is not installed.</string>
@@ -292,32 +282,27 @@
     <string name="bookmark_added">Bookmark added</string>
     <string name="bookmark_removed">Bookmark removed</string>
     <string name="undo">Undo</string>
-
     <string name="file_is_empty">File is empty</string>
-
-
     <string name="install_remove">Install and remove</string>
     <string name="download_remove">Download and remove</string>
     <string name="module_saved">Module saved at %1$s</string>
-
-
     <string name="reboot_recovery">Reboot to recovery</string>
     <string name="loading">Loading…</string>
     <string name="chrome_custom_tabs">Chrome Custom Tabs</string>
     <string name="chrome_custom_tabs_summ">Open links in internal browser</string>
     <string name="scroll_bottom">Scroll to bottom</string>
-    <string name="open_drawer_summ">Open automatically the navigation drawer at startup</string>
-    <string name="open_drawer">Open automatically navigation drawer</string>
+    <string name="open_drawer_summ">Open the navigation drawer automatically at startup</string>
+    <string name="open_drawer">Open navigation drawer automatically</string>
     <string name="share_app">Share app</string>
     <string name="share_app_text">Check this out: Xposed Installer in Material Design! %s</string>
     <string name="disable_xposed">Disable Xposed</string>
     <string name="status">Xposed Status</string>
     <string name="xposed_on_next_reboot">Xposed Framework will be enabled on next reboot</string>
     <string name="xposed_off_next_reboot">Xposed Framework will be disabled on next reboot</string>
-
     <string name="skip_xposedminversion_check">Skip \'xposedminversion\' check</string>
     <string name="skip_xposedminversion_check_summ">Skip \'xposedminversion\' check for modules</string>
-
+    <string name="detected_as">Detected SDK: %1$d, ARCH: %2$s</string>
+    <string name="official">Official</string>
     <string name="systemless">Systemless</string>
 
     <!-- Start compatibility -->
@@ -340,7 +325,8 @@
     <string name="systemless_mode">Systemless mode: %b</string>
     <string name="restart_needed">Restart needed</string>
     <string name="cache_cleaned">App\'s cache has been cleaned. Restart is needed</string>
-    <string name="update_download_list">Pulldown to refresh download\'s module list</string>
+    <string name="update_download_list">The download\'s module list will be loaded in few seconds</string>
+    <string name="no_connection_available">No connection available</string>
     <string name="download_location">Download location</string>
     <string name="download_location_summ">Download location for APK files (modules only)</string>
 
