@@ -209,9 +209,6 @@
 
     <string name="warning_installed_on_external_storage">Questo modulo non può essere caricato perché è installato nella memoria SD, per favore spostalo nella memoria interna</string>
     <string name="warning_forward_locked">Questo modulo non può essere caricato perché è forward-locked, perfavore contatta lo sviluppatore del modulo.</string>
-    <string name="enable_heads_up">Abilita le notifiche Heads-Up</string>
-    <string name="enable_heads_up_summary">Questa opzione abilita la notifica heads up ad ogni nuovo/aggiornato modulo</string>
-    <string name="choose_color">Scegli un colore…</string>
 
     <!-- Support tab -->
     <string name="support_modules_label">Supporto per i moduli</string>
@@ -235,7 +232,6 @@
     <string name="export_modules">Esporta lista moduli abilitati</string>
     <string name="import_modules">Importa lista moduli abilitati</string>
     <string name="view">VEDI</string>
-    <string name="nav_bar_coloration">Colora la barra di navigazione</string>
 
     <string name="download_view_size">Dimensione: %s KB</string>
     <string name="share">Condividi con…</string>
@@ -252,10 +248,7 @@
     <string name="selectFile">Seleziona il file scaricato</string>
     <string name="warningArchitecture">HAI SCELTO L\' ARCHITTETTURA GIUSTA DELLO ZIP?\nUno zip sbagliato può danneggiare il tuo telefono!</string>
     <string name="xposedZipNotFound">File zip non trovato, probabilmemente una nuova versione è stata rilasciata.</string>
-    <string name="newVersion">Una nuova versione di Xposed Installer è disponibile! Aggiorna!</string>
     <string name="update">Aggiorna</string>
-    <string name="choose_icon">Scegli un\' icona</string>
-    <string name="custom_icon">Icona personalizzata</string>
     <string name="installationForbidden">L\' installazione non è possibile su questo dispositivo. Per installare Xposed attraverso questa app, il dispositivo deve avere Android Lollipop o superiore.</string>
     <string name="installed_no_lollipop">Xposed Framework è installato.</string>
     <string name="not_installed_no_lollipop">Xposed Framework non è installato.</string>

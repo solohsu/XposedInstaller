@@ -216,7 +216,6 @@
     <string name="repo_download_failed_http">Pobieranie %1$s błędne: %2$d (%3$s)</string>
     <string name="repo_download_failed">Pobieranie %1$s błędne: %2$s</string>
     <string name="repo_load_failed">Nie można załadować repozytorium z %1$s:\n%2$s</string>
-    <string name="choose_color">Wybierz kolor…</string>
 
     <string name="warning_installed_on_external_storage">Ten moduł nie może zostać załadowany, ponieważ jest zainstalowany na karcie SD, przenieś go do pamięci wewnętrznej.</string>
     <string name="warning_forward_locked">Ten moduł nie może zostać załadowany, ponieważ jest z blokadą dalszego rozpowszechniania, skontaktuj się z deweloperem modułu.</string>
@@ -305,7 +304,6 @@
     <string name="details">Szczegóły</string>
     <string name="support_xda">Uzyskaj wsparcie w temacie na XDA</string>
     <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
-    <string name="original_framework">Twoje urządzenie jest kompatybilne z oficjalnym Xposed Framework.</string>
     <string name="save">Zapisz</string>
     <string name="download_location">Lokalizacja pobierania</string>
     <string name="download_location_summ">Lokalizacja pobierania dla plików APK (tylko moduły)</string>

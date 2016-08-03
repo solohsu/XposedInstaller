@@ -216,7 +216,6 @@
     <string name="repo_download_failed_http">Sťahovanie %1$s zlyhalo: %2$d (%3$s)</string>
     <string name="repo_download_failed">Sťahovanie %1$s zlyhalo: %2$s</string>
     <string name="repo_load_failed">Nemožno načítať z repozitára %1$s:\n%2$s</string>
-    <string name="choose_color">Zvoľte farbu…</string>
 
     <string name="warning_installed_on_external_storage">Tento modul nemôže byť načítaný, pretože je nainštalovaný na karte SD, prosím, presuňte ho do interného úložiska.</string>
     <string name="warning_forward_locked">Tento modul nemôže byť načítaný, pretože je uzamknutý, prosím, kontaktujte vývojára modulu.</string>
@@ -260,10 +259,7 @@
     <string name="xposedZipNotFound">Zip nebol nájdený, pravdepodobne je dostupná nová verzia.</string>
     <string name="warningArchitecture">ZVOLILI STE SPRÁVNU ARCHITEKTÚRU XPOSED ZIP?\nNesprávny zip súbor môže poškodiť vaše zariadenie!</string>
     <string name="help">Pomoc</string>
-    <string name="newVersion">Je dostupná nová verzia Xposed Installera! Aktualizujte ju!</string>
     <string name="update">Aktualizovať</string>
-    <string name="choose_icon">Zvoľte ikonu</string>
-    <string name="custom_icon">Ikona</string>
     <string name="installationForbidden">Inštalácia na tomto zariadení nie je možná. Pre nainštalovanie Xposed cez túto aplikáciu, na zariadení musí bežať Android Lollipop alebo vyšší.</string>
     <string name="installed_no_lollipop">Xposed Framework je nainštalovaný.</string>
     <string name="not_installed_no_lollipop">Xposed Framework nie je nainštalovaný.</string>
@@ -315,8 +311,6 @@
     <string name="detected_as">Zistené SDK: %1$d, ARCH: %2$s</string>
     <string name="official">Oficiálny</string>
     <string name="systemless">Bezsystémový</string>
-    <string name="samsung">Samsung</string>
-    <string name="miui">MIUI</string>
 
     <!-- Start compatibility -->
     <string name="official_compatibility">Všetky AOSP a Samsung ROM, Nexus, LG, HTC, Asus zariadenia</string>
@@ -325,21 +319,12 @@
     <string name="official_incompatibility_v21">Samsung ROMky</string>
     <string name="systemless_compatibility">Všetky ROMky založené na AOSP, Samsung ROMky, LG, HTC, Asus, Pixel C zariadenia</string>
     <string name="systemless_incompatibility">Žiadna nekompatibilita</string>
-    <string name="samsung_compatibility">Všetky AOSP a Samsung ROM, Nexus, LG, HTC, Asus zariadenia. <b>Poznámka: alt</b> verzia je pre Samsung Note telefóny</string>
-    <string name="samsung_incompatibility">Žiadna nekompatibilita</string>
-    <string name="miui_compatibility">Iba MIUI ROMky</string>
-    <string name="miui_incompatibility">Všetky ďalšie ROMky</string>
     <!-- End compatibility -->
 
     <string name="compatibility">Kompatibilita</string>
     <string name="details">Detaily</string>
-    <string name="look_and_feel">Vzhľad a dojem</string>
     <string name="support_xda">Podpora na XDA fóre</string>
     <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
-    <string name="later">Neskôr</string>
-    <string name="device_own">Máte %1$s zariadenie s %2$s ROM.</string>
-    <string name="original_framework">Vaše zariadenie je kompatibilné s oficiálnym Xposed Framework.</string>
-    <string name="goto_framework">Kliknite sem pre zobrazenie správnej sekcie pre vaše zariadenie</string>
     <string name="save">Uložiť</string>
     <string name="download_location">Umiestnenie stiahnutých súborov</string>
     <string name="download_location_summ">Umiestnenie stiahnutých APK súborov (iba moduly)</string>

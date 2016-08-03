@@ -217,7 +217,6 @@
     <string name="repo_download_failed_http">Herunterladen von %1$s fehlgeschlagen: %2$d (%3$s)</string>
     <string name="repo_download_failed">Herunterladen von %1$s fehlgeschlagen: %2$s</string>
     <string name="repo_load_failed">Verzeichnis konnte nicht geladen werden von %1$s:\n%2$s</string>
-    <string name="choose_color">App-Farbe auswählen</string>
 
     <string name="warning_installed_on_external_storage">Dieses Modul kann nicht geladen werden, da es auf der SD-Karte installiert ist. Bitte verschiebe es auf den Internen Speicher.</string>
     <string name="warning_forward_locked">Dieses Modul kann nicht geladen werden, weil es "forward-locked" ist. Bitte kontaktiere den Entwickler des Moduls.</string>
@@ -231,9 +230,6 @@
     <string name="export_installed_modules">Exportiere Liste installierter Module</string>
     <string name="import_installed_modules">Importiere Liste installierter Module</string>
     <string name="no_installed_modules">Es ist kein Modul installiert!</string>
-    <string name="enable_heads_up">Heads-Up Benachrichtigungen</string>
-    <string name="enable_heads_up_summary">Zeigt Heads-Up Benachrichtigungen bei neuen/aktualisierten Modulen</string>
-    <string name="nav_bar_coloration">Navigationsleiste einfärben</string>
     <string name="no_backup_found">Keine Sicherung gefunden</string>
     <string name="no_enabled_modules">Es ist kein Modul aktiviert!</string>
 
