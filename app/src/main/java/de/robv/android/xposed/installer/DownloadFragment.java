@@ -23,6 +23,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.CursorAdapter;
@@ -129,7 +130,6 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
         backgroundList = v.findViewById(R.id.background_list);
 
         mListView = (StickyListHeadersListView) v.findViewById(R.id.listModules);
-        mListView.setEmptyView(backgroundList);
 
         final SwipeRefreshLayout refreshLayout = (SwipeRefreshLayout) v.findViewById(R.id.swiperefreshlayout);
         refreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorPrimary));
@@ -143,6 +143,19 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
         mRepoLoader.addListener(this, true);
         mModuleUtil.addListener(this);
         mListView.setAdapter(mAdapter);
+        mListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if (mListView.getChildAt(0) != null) {
+                    refreshLayout.setEnabled(mListView.getFirstVisiblePosition() == 0 && mListView.getChildAt(0).getTop() == 0);
+                }
+            }
+        });
 
         mListView.setOnItemClickListener(new OnItemClickListener() {
             @Override
@@ -219,6 +232,7 @@ public class DownloadFragment extends Fragment implements RepoListener, ModuleLi
     private void setFilter(String filterText) {
         mFilterText = filterText;
         reloadItems();
+        backgroundList.setVisibility(View.GONE);
     }
 
     private void reloadItems() {
