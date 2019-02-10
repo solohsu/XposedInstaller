@@ -122,8 +122,28 @@ public class AppHelper {
         return checkRetCode(Shell.su((isForceGlobal ? "touch " : "rm ") + FORCE_GLOBAL_MODE).exec().getCode());
     }
 
+    public static boolean getForceGlobalMode() {
+        try {
+            return Shell.su("test -e " + FORCE_GLOBAL_MODE + "; echo $?").exec()
+                    .getOut().get(0).equals("0");
+        } catch (Throwable throwable) {
+            Log.e(TAG, throwable.getMessage());
+            return false;
+        }
+    }
+
     public static boolean setDynamicModules(boolean isDynamicModules) {
         return checkRetCode(Shell.su((isDynamicModules ? "touch " : "rm ") + DYNAMIC_MODULES).exec().getCode());
+    }
+
+    public static boolean getDynamicModules() {
+        try {
+            return Shell.su("test -e " + DYNAMIC_MODULES + "; echo $?").exec()
+                    .getOut().get(0).equals("0");
+        } catch (Throwable throwable) {
+            Log.e(TAG, throwable.getMessage());
+            return false;
+        }
     }
 
     @SuppressLint("RestrictedApi")

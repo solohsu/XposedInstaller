@@ -2,10 +2,13 @@ package com.solohsu.android.edxp.manager.fragment;
 
 import android.os.Bundle;
 
+import com.solohsu.android.edxp.manager.R;
+import com.solohsu.android.edxp.manager.adapter.AppHelper;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.preference.SwitchPreference;
 import androidx.recyclerview.widget.RecyclerView;
-import com.solohsu.android.edxp.manager.R;
 import de.robv.android.xposed.installer.WelcomeActivity;
 
 import static com.solohsu.android.edxp.manager.adapter.AppHelper.setDynamicModules;
@@ -40,9 +43,13 @@ public class SettingFragment extends BasePreferenceFragment {
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
         addPreferencesFromResource(R.xml.pref_settings);
-        findPreference("force_global_mode").setOnPreferenceChangeListener(
+        SwitchPreference globalModePref = findPreference("force_global_mode");
+        SwitchPreference dynamicModulesPref = findPreference("is_dynamic_modules");
+        globalModePref.setChecked(AppHelper.getForceGlobalMode());
+        dynamicModulesPref.setChecked(AppHelper.getDynamicModules());
+        globalModePref.setOnPreferenceChangeListener(
                 (preference, newValue) -> setForceGlobalMode((Boolean) newValue));
-        findPreference("is_dynamic_modules").setOnPreferenceChangeListener(
+        dynamicModulesPref.setOnPreferenceChangeListener(
                 (preference, newValue) -> setDynamicModules((Boolean) newValue));
     }
 
