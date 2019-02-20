@@ -72,8 +72,8 @@ public class StatusInstallerFragment extends Fragment {
             return;
         }
 
-        mErrorTv.setVisibility(View.VISIBLE);
-        mErrorIcon.setVisibility(View.VISIBLE);
+        mErrorTv.setVisibility(View.GONE);
+        mErrorIcon.setVisibility(View.GONE);
         if (noSdks) {
             mErrorIcon.setImageDrawable(sActivity.getResources().getDrawable(R.drawable.ic_warning_grey));
             mErrorTv.setText(String.format(sActivity.getString(R.string.phone_not_compatible), Build.VERSION.SDK_INT, Build.CPU_ABI));
