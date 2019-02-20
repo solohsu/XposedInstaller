@@ -3,15 +3,19 @@ package com.solohsu.android.edxp.manager.adapter;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
-import android.util.Log;
+import android.os.FileUtils;
 import android.view.View;
 
 import com.solohsu.android.edxp.manager.BuildConfig;
 import com.solohsu.android.edxp.manager.R;
-import com.topjohnwu.superuser.Shell;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.view.menu.MenuBuilder;
@@ -19,45 +23,39 @@ import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.FragmentManager;
 
+import static de.robv.android.xposed.installer.XposedApp.BASE_DIR;
+
 public class AppHelper {
 
     public static final String TAG = "AppHelper";
 
-    private static final String BASE_PATH = "/data/misc/riru/modules/edxposed/";
-    private static final String WHITE_LIST_PATH = BASE_PATH + "whitelist/";
-    private static final String BLACK_LIST_PATH = BASE_PATH + "blacklist/";
-    private static final String COMPAT_LIST_PATH = BASE_PATH + "compatlist/";
-    private static final String WHITE_LIST_MODE = BASE_PATH + "usewhitelist";
-    private static final String FORCE_GLOBAL_MODE = BASE_PATH + "forceglobal";
-    private static final String DYNAMIC_MODULES = BASE_PATH + "dynamicmodules";
+    private static final String WHITE_LIST_PATH = BASE_DIR + "conf/whitelist/";
+    private static final String BLACK_LIST_PATH = BASE_DIR + "conf/blacklist/";
+    private static final String COMPAT_LIST_PATH = BASE_DIR + "conf/compatlist/";
+    private static final String WHITE_LIST_MODE = BASE_DIR + "conf/usewhitelist";
+    private static final String DYNAMIC_MODULES = BASE_DIR + "conf/dynamicmodules";
 
-    private static final List<String> FORCE_WHITE_LIST = Arrays.asList(BuildConfig.APPLICATION_ID);
+    private static final Set<String> FORCE_WHITE_LIST = Collections.singleton(BuildConfig.APPLICATION_ID);
 
-    public static boolean makeSurePath() {
-        return checkRetCode(Shell.su(
-                "mkdir " + WHITE_LIST_PATH,
-                "mkdir " + BLACK_LIST_PATH,
-                "mkdir " + COMPAT_LIST_PATH).exec().getCode());
+    public static void makeSurePath() {
+        new File(WHITE_LIST_PATH).mkdirs();
+        new File(BLACK_LIST_PATH).mkdirs();
+        new File(COMPAT_LIST_PATH).mkdirs();
+        FileUtils.setPermissions(WHITE_LIST_PATH, 00711, -1, -1);
+        FileUtils.setPermissions(BLACK_LIST_PATH, 00711, -1, -1);
+        FileUtils.setPermissions(COMPAT_LIST_PATH, 00711, -1, -1);
     }
 
     public static boolean isWhiteListMode() {
-        try {
-            return Shell.su("test -e " + WHITE_LIST_MODE + "; echo $?").exec()
-                    .getOut().get(0).equals("0");
-        } catch (Throwable throwable) {
-            Log.e(TAG, throwable.getMessage());
-            return false;
-        }
+        return isFileExists(WHITE_LIST_MODE);
     }
 
     public static boolean setWhiteListMode(boolean isWhiteListMode) {
-        return isWhiteListMode ?
-                checkRetCode(Shell.su("touch " + WHITE_LIST_MODE).exec().getCode()) :
-                checkRetCode(Shell.su("rm " + WHITE_LIST_MODE).exec().getCode());
+        return isWhiteListMode ? createFile(WHITE_LIST_MODE) : deleteFile(WHITE_LIST_MODE);
     }
 
     public static boolean addWhiteList(String packageName) {
-        return checkRetCode(Shell.su(whiteListFileName(packageName, true)).exec().getCode());
+        return createFile(WHITE_LIST_PATH + packageName);
     }
 
     public static boolean addBlackList(String packageName) {
@@ -65,26 +63,26 @@ public class AppHelper {
             removeBlackList(packageName);
             return false;
         }
-        return checkRetCode(Shell.su(blackListFileName(packageName, true)).exec().getCode());
+        return createFile(BLACK_LIST_PATH + packageName);
     }
 
     public static boolean removeWhiteList(String packageName) {
         if (FORCE_WHITE_LIST.contains(packageName)) {
             return false;
         }
-        return checkRetCode(Shell.su(whiteListFileName(packageName, false)).exec().getCode());
+        return deleteFile(WHITE_LIST_PATH + packageName);
     }
 
     public static boolean removeBlackList(String packageName) {
-        return checkRetCode(Shell.su(blackListFileName(packageName, false)).exec().getCode());
+        return deleteFile(BLACK_LIST_PATH + packageName);
     }
 
     public static List<String> getBlackList() {
-        return Shell.su("ls " + BLACK_LIST_PATH).exec().getOut();
+        return listFiles(BLACK_LIST_PATH);
     }
 
     public static List<String> getWhiteList() {
-        List<String> result = Shell.su("ls " + WHITE_LIST_PATH).exec().getOut();
+        List<String> result = new ArrayList<>(listFiles(WHITE_LIST_PATH));
         for (String pn : FORCE_WHITE_LIST) {
             if (!result.contains(pn)) {
                 result.add(pn);
@@ -92,22 +90,6 @@ public class AppHelper {
             }
         }
         return result;
-    }
-
-    private static String whiteListFileName(String packageName, boolean isAdd) {
-        return (isAdd ? "touch " : "rm ") + WHITE_LIST_PATH + packageName;
-    }
-
-    private static String blackListFileName(String packageName, boolean isAdd) {
-        return (isAdd ? "touch " : "rm ") + BLACK_LIST_PATH + packageName;
-    }
-
-    private static String compatListFileName(String packageName, boolean isAdd) {
-        return (isAdd ? "touch " : "rm ") + COMPAT_LIST_PATH + packageName;
-    }
-
-    private static boolean checkRetCode(int retCode) {
-        return retCode != com.topjohnwu.superuser.Shell.Result.JOB_NOT_EXECUTED;
     }
 
     public static boolean addPackageName(boolean isWhiteListMode, String packageName) {
@@ -118,32 +100,12 @@ public class AppHelper {
         return isWhiteListMode ? removeWhiteList(packageName) : removeBlackList(packageName);
     }
 
-    public static boolean setForceGlobalMode(boolean isForceGlobal) {
-        return checkRetCode(Shell.su((isForceGlobal ? "touch " : "rm ") + FORCE_GLOBAL_MODE).exec().getCode());
-    }
-
-    public static boolean getForceGlobalMode() {
-        try {
-            return Shell.su("test -e " + FORCE_GLOBAL_MODE + "; echo $?").exec()
-                    .getOut().get(0).equals("0");
-        } catch (Throwable throwable) {
-            Log.e(TAG, throwable.getMessage());
-            return false;
-        }
-    }
-
     public static boolean setDynamicModules(boolean isDynamicModules) {
-        return checkRetCode(Shell.su((isDynamicModules ? "touch " : "rm ") + DYNAMIC_MODULES).exec().getCode());
+        return isDynamicModules ? createFile(DYNAMIC_MODULES) : deleteFile(DYNAMIC_MODULES);
     }
 
-    public static boolean getDynamicModules() {
-        try {
-            return Shell.su("test -e " + DYNAMIC_MODULES + "; echo $?").exec()
-                    .getOut().get(0).equals("0");
-        } catch (Throwable throwable) {
-            Log.e(TAG, throwable.getMessage());
-            return false;
-        }
+    public static boolean isDynamicModules() {
+        return isFileExists(DYNAMIC_MODULES);
     }
 
     @SuppressLint("RestrictedApi")
@@ -170,14 +132,42 @@ public class AppHelper {
     }
 
     public static List<String> getCompatList() {
-        return Shell.su("ls " + COMPAT_LIST_PATH).exec().getOut();
+        return listFiles(COMPAT_LIST_PATH);
     }
 
     public static boolean addCompatList(String packageName) {
-        return checkRetCode(Shell.su(compatListFileName(packageName, true)).exec().getCode());
+        return createFile(COMPAT_LIST_PATH + packageName);
     }
 
     public static boolean removeCompatList(String packageName) {
-        return checkRetCode(Shell.su(compatListFileName(packageName, false)).exec().getCode());
+        return deleteFile(COMPAT_LIST_PATH + packageName);
+    }
+
+    private static List<String> listFiles(String path) {
+        File file = new File(path);
+        if (file.isDirectory()) {
+            return Arrays.asList(file.list());
+        } else {
+            return Collections.EMPTY_LIST;
+        }
+    }
+
+    private static boolean isFileExists(String path) {
+        return new File(path).exists();
+    }
+
+    private static boolean deleteFile(String path) {
+        return new File(path).delete();
+    }
+
+    private static boolean createFile(String path) {
+        try {
+            new File(path).createNewFile();
+            FileUtils.setPermissions(path, 00664, -1, -1);
+            return true;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 }
