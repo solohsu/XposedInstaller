@@ -82,7 +82,7 @@ public class AppHelper {
     }
 
     public static List<String> getWhiteList() {
-        List<String> result = new ArrayList<>(listFiles(WHITE_LIST_PATH));
+        List<String> result = listFiles(WHITE_LIST_PATH);
         for (String pn : FORCE_WHITE_LIST) {
             if (!result.contains(pn)) {
                 result.add(pn);
@@ -146,9 +146,9 @@ public class AppHelper {
     private static List<String> listFiles(String path) {
         File file = new File(path);
         if (file.isDirectory()) {
-            return Arrays.asList(file.list());
+            return new ArrayList<>(Arrays.asList(file.list()));
         } else {
-            return Collections.EMPTY_LIST;
+            return new ArrayList<>();
         }
     }
 
