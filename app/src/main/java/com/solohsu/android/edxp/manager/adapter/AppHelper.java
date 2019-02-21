@@ -13,9 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.view.menu.MenuBuilder;
@@ -34,8 +32,12 @@ public class AppHelper {
     private static final String COMPAT_LIST_PATH = BASE_DIR + "conf/compatlist/";
     private static final String WHITE_LIST_MODE = BASE_DIR + "conf/usewhitelist";
     private static final String DYNAMIC_MODULES = BASE_DIR + "conf/dynamicmodules";
+    private static final String BLACK_WHITE_LIST = BASE_DIR + "conf/blackwhitelist";
 
-    private static final Set<String> FORCE_WHITE_LIST = Collections.singleton(BuildConfig.APPLICATION_ID);
+    private static final List<String> FORCE_WHITE_LIST = Arrays.asList(
+            BuildConfig.APPLICATION_ID,
+            "org.meowcat.edxposed.manager",
+            "de.robv.android.xposed.installer");
 
     public static void makeSurePath() {
         new File(WHITE_LIST_PATH).mkdirs();
@@ -100,12 +102,20 @@ public class AppHelper {
         return isWhiteListMode ? removeWhiteList(packageName) : removeBlackList(packageName);
     }
 
-    public static boolean setDynamicModules(boolean isDynamicModules) {
-        return isDynamicModules ? createFile(DYNAMIC_MODULES) : deleteFile(DYNAMIC_MODULES);
+    public static boolean setDynamicModulesEnabled(boolean dynamicModulesEnabled) {
+        return dynamicModulesEnabled ? createFile(DYNAMIC_MODULES) : deleteFile(DYNAMIC_MODULES);
     }
 
-    public static boolean isDynamicModules() {
+    public static boolean dynamicModulesEnabled() {
         return isFileExists(DYNAMIC_MODULES);
+    }
+
+    public static boolean blackWhiteListEnabled() {
+        return isFileExists(BLACK_WHITE_LIST);
+    }
+
+    public static boolean setBlackWhiteListEnabled(boolean blackWhiteListEnabled) {
+        return blackWhiteListEnabled ? createFile(BLACK_WHITE_LIST) : deleteFile(BLACK_WHITE_LIST);
     }
 
     @SuppressLint("RestrictedApi")

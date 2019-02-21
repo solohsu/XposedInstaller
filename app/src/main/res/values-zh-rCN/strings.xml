@@ -21,7 +21,7 @@
     <string name="nav_item_about">关于</string>
     <string name="navigation_drawer_open">开启导航抽屉栏</string>
     <string name="navigation_drawer_close">关闭导航抽屉栏</string>
-	
+
     <!-- Installer tab -->
     <string name="install">安装/更新</string>
     <string name="uninstall">卸载</string>
@@ -41,7 +41,7 @@
     <string name="installed_lollipop">Xposed 框架 %s 版已激活。</string>
     <string name="installed_lollipop_inactive">Xposed 框架 %s 版已安装，但尚未激活。 请查看日志以了解详情。</string>
     <string name="modules_updates_available">有模块更新可用</string>
-	
+
     <!-- File operations -->
     <string name="root_failed">无法获取 root 权限。\n\n请确认您的设备已正确 root 且没有阻止 shell 命令。</string>
     <string name="file_extract_failed">无法解压缩 %s</string>
@@ -309,10 +309,10 @@
     <string name="app_source_code_title">App 源代码</string>
     <string name="edxp_source_code_title">EdXposed 源代码</string>
     <string name="open_link_failed_toast">无法找到可以打开链接的应用</string>
-    <string name="pref_title_force_global">全局模式</string>
+    <string name="pref_title_black_white_list">黑/白名单</string>
     <string name="pref_title_dynamic_modules">即时模块列表</string>
-    <string name="pref_force_global_summary">(重启后生效) 启用后，忽略所有黑名单和白名单设置</string>
-    <string name="pref_dynamic_modules_summary">(重启后生效) 启用后，每个APP进程启动时重新加载最新的模块列表</string>
+    <string name="pref_black_white_list_summary">(重启后生效) 注意：使用黑/白名单可能会导致某些进程内的 hook 失效，例如电话进程。</string>
+    <string name="pref_dynamic_modules_summary">(重启后生效) 启用后，每个APP进程启动时重新加载最新的模块列表。</string>
     <string name="title_compat_list">兼容模式</string>
     <string name="menu_title_compat_mode">关于兼容模式</string>
 

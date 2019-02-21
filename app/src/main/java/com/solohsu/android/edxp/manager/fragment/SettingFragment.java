@@ -11,7 +11,8 @@ import androidx.preference.SwitchPreference;
 import androidx.recyclerview.widget.RecyclerView;
 import de.robv.android.xposed.installer.WelcomeActivity;
 
-import static com.solohsu.android.edxp.manager.adapter.AppHelper.setDynamicModules;
+import static com.solohsu.android.edxp.manager.adapter.AppHelper.setBlackWhiteListEnabled;
+import static com.solohsu.android.edxp.manager.adapter.AppHelper.setDynamicModulesEnabled;
 
 public class SettingFragment extends BasePreferenceFragment {
 
@@ -42,10 +43,16 @@ public class SettingFragment extends BasePreferenceFragment {
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
         addPreferencesFromResource(R.xml.pref_settings);
-        SwitchPreference dynamicModulesPref = findPreference("is_dynamic_modules");
-        dynamicModulesPref.setChecked(AppHelper.isDynamicModules());
+
+        SwitchPreference dynamicModulesPref = findPreference("dynamic_modules_enabled");
+        dynamicModulesPref.setChecked(AppHelper.dynamicModulesEnabled());
         dynamicModulesPref.setOnPreferenceChangeListener(
-                (preference, newValue) -> setDynamicModules((Boolean) newValue));
+                (preference, newValue) -> setDynamicModulesEnabled((Boolean) newValue));
+
+        SwitchPreference blackListPref = findPreference("black_white_list_enabled");
+        blackListPref.setChecked(AppHelper.blackWhiteListEnabled());
+        blackListPref.setOnPreferenceChangeListener(
+                (preference, newValue) -> setBlackWhiteListEnabled((Boolean) newValue));
     }
 
 }

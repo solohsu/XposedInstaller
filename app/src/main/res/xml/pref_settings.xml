@@ -3,7 +3,13 @@
     <SwitchPreference
         android:defaultValue="false"
         android:icon="@drawable/ic_sync"
-        android:key="is_dynamic_modules"
+        android:key="dynamic_modules_enabled"
         android:summary="@string/pref_dynamic_modules_summary"
         android:title="@string/pref_title_dynamic_modules" />
+    <SwitchPreference
+        android:defaultValue="false"
+        android:icon="@drawable/ic_block_"
+        android:key="black_white_list_enabled"
+        android:summary="@string/pref_black_white_list_summary"
+        android:title="@string/pref_title_black_white_list" />
 </PreferenceScreen>
