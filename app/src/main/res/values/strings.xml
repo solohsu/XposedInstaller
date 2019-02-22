@@ -341,7 +341,7 @@
     <string name="open_link_failed_toast">No application found to open the link.</string>
     <string name="pref_title_black_white_list">Black/White list</string>
     <string name="pref_title_dynamic_modules">Instant module list</string>
-    <string name="pref_black_white_list_summary">(Reboot needed) Note: using black/white list might result in modules not working in some processes, for example com.android.phone.</string>
+    <string name="pref_black_white_list_summary">(Reboot needed) Note: using black/white list might result in modules not working in some processes, for example com.android.phone;also it could break system-wide modules\' functions.</string>
     <string name="pref_dynamic_modules_summary">(Reboot needed) When turned on, load latest activated module list on each app process started.</string>
     <string name="title_compat_list">Compat mode</string>
     <string name="menu_title_compat_mode">About Compat mode</string>
