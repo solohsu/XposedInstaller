@@ -315,5 +315,7 @@
     <string name="pref_dynamic_modules_summary">(重启后生效) 启用后，每个APP进程启动时重新加载最新的模块列表。</string>
     <string name="title_compat_list">兼容模式</string>
     <string name="menu_title_compat_mode">关于兼容模式</string>
+    <string name="pref_title_enable_boot_image_deopt">去除系统代码优化</string>
+    <string name="pref_enable_boot_image_deopt_summary">(重启后生效) 取消系统代码的优化能使所有系统方法都可以被hook到，但是会降低系统流畅度。主要用于对比测试某个方法无法hook到是否是系统优化导致。</string>
 
 </resources>

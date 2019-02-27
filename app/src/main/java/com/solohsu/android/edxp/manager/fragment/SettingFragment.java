@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import de.robv.android.xposed.installer.WelcomeActivity;
 
 import static com.solohsu.android.edxp.manager.adapter.AppHelper.setBlackWhiteListEnabled;
+import static com.solohsu.android.edxp.manager.adapter.AppHelper.setBootImageDeoptEnabled;
 import static com.solohsu.android.edxp.manager.adapter.AppHelper.setDynamicModulesEnabled;
 
 public class SettingFragment extends BasePreferenceFragment {
@@ -53,6 +54,10 @@ public class SettingFragment extends BasePreferenceFragment {
         blackListPref.setChecked(AppHelper.blackWhiteListEnabled());
         blackListPref.setOnPreferenceChangeListener(
                 (preference, newValue) -> setBlackWhiteListEnabled((Boolean) newValue));
+        SwitchPreference enableDeoptPref = findPreference("enable_boot_image_deopt");
+        enableDeoptPref.setChecked(AppHelper.bootImageDeoptEnabled());
+        enableDeoptPref.setOnPreferenceChangeListener(
+                (preference, newValue) -> setBootImageDeoptEnabled((Boolean) newValue));
     }
 
 }

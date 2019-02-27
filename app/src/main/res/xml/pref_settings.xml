@@ -2,14 +2,17 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <SwitchPreference
         android:defaultValue="false"
-        android:icon="@drawable/ic_sync"
         android:key="dynamic_modules_enabled"
         android:summary="@string/pref_dynamic_modules_summary"
         android:title="@string/pref_title_dynamic_modules" />
     <SwitchPreference
         android:defaultValue="false"
-        android:icon="@drawable/ic_block_"
         android:key="black_white_list_enabled"
         android:summary="@string/pref_black_white_list_summary"
         android:title="@string/pref_title_black_white_list" />
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="enable_boot_image_deopt"
+        android:summary="@string/pref_enable_boot_image_deopt_summary"
+        android:title="@string/pref_title_enable_boot_image_deopt" />
 </PreferenceScreen>

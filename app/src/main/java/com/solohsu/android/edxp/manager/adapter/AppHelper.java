@@ -33,6 +33,7 @@ public class AppHelper {
     private static final String WHITE_LIST_MODE = BASE_DIR + "conf/usewhitelist";
     private static final String DYNAMIC_MODULES = BASE_DIR + "conf/dynamicmodules";
     private static final String BLACK_WHITE_LIST = BASE_DIR + "conf/blackwhitelist";
+    private static final String DEOPT_BOOT_IMAGE = BASE_DIR + "conf/deoptbootimage";
 
     private static final List<String> FORCE_WHITE_LIST = Arrays.asList(
             BuildConfig.APPLICATION_ID,
@@ -116,6 +117,14 @@ public class AppHelper {
 
     public static boolean setBlackWhiteListEnabled(boolean blackWhiteListEnabled) {
         return blackWhiteListEnabled ? createFile(BLACK_WHITE_LIST) : deleteFile(BLACK_WHITE_LIST);
+    }
+
+    public static boolean bootImageDeoptEnabled() {
+        return isFileExists(DEOPT_BOOT_IMAGE);
+    }
+
+    public static boolean setBootImageDeoptEnabled(boolean bootImageDeoptEnabled) {
+        return bootImageDeoptEnabled ? createFile(DEOPT_BOOT_IMAGE) : deleteFile(DEOPT_BOOT_IMAGE);
     }
 
     @SuppressLint("RestrictedApi")
