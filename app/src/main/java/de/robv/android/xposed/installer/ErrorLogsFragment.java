@@ -9,10 +9,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.core.content.FileProvider;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -36,14 +32,19 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Calendar;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
+
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static de.robv.android.xposed.installer.XposedApp.createFolder;
 
-public class LogsFragment extends Fragment {
+public class ErrorLogsFragment extends Fragment {
 
-    private File mFileErrorLog = new File(XposedApp.BASE_DIR + "log/all.log");
+    private File mFileErrorLog = new File(XposedApp.BASE_DIR + "log/error.log");
     private File mFileErrorLogOld = new File(
-            XposedApp.BASE_DIR + "log/all.log.old");
+            XposedApp.BASE_DIR + "log/error.log.old");
     private TextView mTxtLog;
     private ScrollView mSVLog;
     private HorizontalScrollView mHSVLog;
@@ -58,11 +59,11 @@ public class LogsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.tab_logs, container, false);
-        mTxtLog = v.findViewById(R.id.txtLog);
+        View v = inflater.inflate(R.layout.tab_logs_err, container, false);
+        mTxtLog = v.findViewById(R.id.txtLog_err);
         mTxtLog.setTextIsSelectable(true);
-        mSVLog = v.findViewById(R.id.svLog);
-        mHSVLog = v.findViewById(R.id.hsvLog);
+        mSVLog = v.findViewById(R.id.svLog_err);
+        mHSVLog = v.findViewById(R.id.hsvLog_err);
 /*
         View scrollTop = v.findViewById(R.id.scroll_top);
         View scrollDown = v.findViewById(R.id.scroll_down);
