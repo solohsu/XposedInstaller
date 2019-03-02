@@ -54,7 +54,7 @@ import de.robv.android.xposed.installer.util.NotificationUtil;
 import de.robv.android.xposed.installer.util.RepoLoader;
 
 public class XposedApp extends Application implements ActivityLifecycleCallbacks {
-    public static final String TAG = "XposedInstaller";
+    public static final String TAG = "EdXposedInstaller";
 
     @SuppressLint("SdCardPath")
     private static final String BASE_DIR_LEGACY = "/data/data/" + BuildConfig.APPLICATION_ID + "/";
@@ -248,7 +248,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
             mPref.edit().putString("date", dateFormat.format(date)).apply();
 
             try {
-                Log.i(TAG, String.format("XposedInstaller - %s - %s", BuildConfig.APP_VERSION, getPackageManager().getPackageInfo(getPackageName(), 0).versionName));
+                Log.i(TAG, String.format("EdXposedInstaller - %s - %s", BuildConfig.APP_VERSION, getPackageManager().getPackageInfo(getPackageName(), 0).versionName));
             } catch (PackageManager.NameNotFoundException ignored) {
             }
         }

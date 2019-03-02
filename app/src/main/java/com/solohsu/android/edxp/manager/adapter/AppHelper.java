@@ -20,12 +20,13 @@ import androidx.appcompat.view.menu.MenuBuilder;
 import androidx.appcompat.view.menu.MenuPopupHelper;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.FragmentManager;
+import de.robv.android.xposed.installer.XposedApp;
 
 import static de.robv.android.xposed.installer.XposedApp.BASE_DIR;
 
 public class AppHelper {
 
-    public static final String TAG = "AppHelper";
+    public static final String TAG = XposedApp.TAG;
 
     private static final String WHITE_LIST_PATH = BASE_DIR + "conf/whitelist/";
     private static final String BLACK_LIST_PATH = BASE_DIR + "conf/blacklist/";
