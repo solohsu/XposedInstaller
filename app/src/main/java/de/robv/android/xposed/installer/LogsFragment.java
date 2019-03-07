@@ -209,7 +209,6 @@ public class LogsFragment extends Fragment {
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_STREAM, uri);
         sendIntent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-        sendIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(save()));
         sendIntent.setType("application/html");
         startActivity(Intent.createChooser(sendIntent, getResources().getString(R.string.menuSend)));
     }
