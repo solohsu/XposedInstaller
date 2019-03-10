@@ -9,10 +9,6 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.fragment.app.Fragment;
-import androidx.core.content.FileProvider;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -36,6 +32,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Calendar;
 
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.FileProvider;
+import androidx.fragment.app.Fragment;
+import de.robv.android.xposed.installer.util.RootUtil;
+
 import static de.robv.android.xposed.installer.XposedApp.WRITE_EXTERNAL_PERMISSION;
 import static de.robv.android.xposed.installer.XposedApp.createFolder;
 
@@ -48,6 +50,7 @@ public class LogsFragment extends Fragment {
     private ScrollView mSVLog;
     private HorizontalScrollView mHSVLog;
     private MenuItem mClickedMenuItem = null;
+    private RootUtil mRootUtil = new RootUtil();
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -174,7 +177,13 @@ public class LogsFragment extends Fragment {
         });
     }
 
+    private void enableLogAccess() {
+        mRootUtil.startShell();
+        mRootUtil.execute("chmod 755 " + mFileErrorLog.getAbsolutePath());
+    }
+
     private void reloadErrorLog() {
+        enableLogAccess();
         new LogsReader().execute(mFileErrorLog);
         mSVLog.post(new Runnable() {
             @Override
@@ -192,6 +201,7 @@ public class LogsFragment extends Fragment {
 
     private void clear() {
         try {
+            enableLogAccess();
             new FileOutputStream(mFileErrorLog).close();
             mFileErrorLogOld.delete();
             mTxtLog.setText(R.string.log_is_empty);
@@ -204,6 +214,7 @@ public class LogsFragment extends Fragment {
     }
 
     private void send() {
+        enableLogAccess();
         Uri uri = FileProvider.getUriForFile(getActivity(), "com.solohsu.android.edxp.manager.fileprovider", mFileErrorLog);
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
@@ -256,6 +267,7 @@ public class LogsFragment extends Fragment {
         File targetFile = new File(createFolder(), filename);
 
         try {
+            enableLogAccess();
             FileInputStream in = new FileInputStream(mFileErrorLog);
             FileOutputStream out = new FileOutputStream(targetFile);
             byte[] buffer = new byte[1024];
