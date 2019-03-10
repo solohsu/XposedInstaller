@@ -179,7 +179,7 @@ public class LogsFragment extends Fragment {
 
     private void enableLogAccess() {
         mRootUtil.startShell();
-        mRootUtil.execute("chmod 755 " + mFileErrorLog.getAbsolutePath());
+        mRootUtil.execute("chmod 777 " + mFileErrorLog.getAbsolutePath());
     }
 
     private void reloadErrorLog() {
