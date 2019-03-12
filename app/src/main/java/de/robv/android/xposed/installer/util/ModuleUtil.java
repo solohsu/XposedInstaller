@@ -207,21 +207,21 @@ public final class ModuleUtil {
     public synchronized void updateModulesList(boolean showToast) {
         try {
             Log.i(XposedApp.TAG, "ModuleUtil -> updating modules.list");
-            int installedXposedVersion = XposedApp.getXposedVersion();
-            boolean disabled = StatusInstallerFragment.DISABLE_FILE.exists();
-            if (!disabled && installedXposedVersion <= 0) {
-                Toast.makeText(mApp, "The Xposed framework is not installed", Toast.LENGTH_SHORT).show();
-                return;
-            }
+//            int installedXposedVersion = XposedApp.getXposedVersion();
+//            boolean disabled = StatusInstallerFragment.DISABLE_FILE.exists();
+//            if (!disabled && installedXposedVersion <= 0) {
+//                Toast.makeText(mApp, "The Xposed framework is not installed", Toast.LENGTH_SHORT).show();
+//                return;
+//            }
 
             PrintWriter modulesList = new PrintWriter(MODULES_LIST_FILE);
             PrintWriter enabledModulesList = new PrintWriter(XposedApp.ENABLED_MODULES_LIST_FILE);
             List<InstalledModule> enabledModules = getEnabledModules();
             for (InstalledModule module : enabledModules) {
-                if (!disabled && (module.minVersion > installedXposedVersion || module.minVersion < MIN_MODULE_VERSION)) {
-                    Toast.makeText(mApp, "The Xposed framework is not installed", Toast.LENGTH_SHORT).show();
-                    continue;
-                }
+//                if (!disabled && (module.minVersion > installedXposedVersion || module.minVersion < MIN_MODULE_VERSION)) {
+//                    Toast.makeText(mApp, "The Xposed framework is not installed", Toast.LENGTH_SHORT).show();
+//                    continue;
+//                }
 
                 modulesList.println(module.app.sourceDir);
 

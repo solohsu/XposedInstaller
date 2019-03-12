@@ -608,6 +608,7 @@ public class ModulesFragment extends Fragment implements ModuleListener, Adapter
                 checkbox.setEnabled(true);
                 warningText.setVisibility(View.GONE);
             }
+            checkbox.setEnabled(true);
             return view;
         }
     }
