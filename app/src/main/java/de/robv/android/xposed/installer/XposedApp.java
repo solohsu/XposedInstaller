@@ -140,7 +140,7 @@ public class XposedApp extends Application implements ActivityLifecycleCallbacks
     // This method is hooked by XposedBridge to return the current version
     public static Integer getActiveXposedVersion() {
         try {
-            Log.d("stub", String.valueOf(1 / 0));
+            Log.d(TAG, String.valueOf("getActiveXposedVersion stub"));
         } catch (Exception ex) {
             return -1;
         }

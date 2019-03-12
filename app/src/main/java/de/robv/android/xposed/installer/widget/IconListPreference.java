@@ -143,7 +143,6 @@ public class IconListPreference extends ListPreference {
 
         @Override
         public void onDialogClosed(boolean positiveResult) {
-            Log.d("solo", "onDialogClosed:" + positiveResult);
             final ListPreference preference = getCustomizablePreference();
             final String value = getValue();
             if (value != null) {

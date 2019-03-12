@@ -4,15 +4,13 @@ import android.content.Context;
 import android.content.pm.ApplicationInfo;
 import android.widget.CompoundButton;
 
+import com.solohsu.android.edxp.manager.R;
 import com.solohsu.android.edxp.manager.util.ToastUtils;
 
 import java.util.List;
 
-import com.solohsu.android.edxp.manager.R;
-
 public class BlackListAdapter extends AppAdapter {
 
-    private static final String TAG = "BlackListAdapter";
     private volatile boolean isWhiteListMode;
     private List<String> checkedList;
 
