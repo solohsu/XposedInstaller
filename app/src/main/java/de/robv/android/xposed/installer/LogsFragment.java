@@ -9,6 +9,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -43,14 +44,25 @@ import static de.robv.android.xposed.installer.XposedApp.createFolder;
 
 public class LogsFragment extends Fragment {
 
-    private File mFileErrorLog = new File(XposedApp.BASE_DIR + "log/error.log");
-    private File mFileErrorLogOld = new File(
-            XposedApp.BASE_DIR + "log/error.log.old");
+    private static final String KEY_LOG_NAME = "log_name";
+    private static final String DEFAULT_LOG_NAME = "error";
+
+    private File mFileErrorLog;
+    private File mFileErrorLogOld;
     private TextView mTxtLog;
     private ScrollView mSVLog;
     private HorizontalScrollView mHSVLog;
     private MenuItem mClickedMenuItem = null;
     private RootUtil mRootUtil = new RootUtil();
+    private String mLogName;
+
+    public static LogsFragment newInstance(String logName) {
+        Bundle args = new Bundle();
+        args.putString(KEY_LOG_NAME, logName);
+        LogsFragment fragment = new LogsFragment();
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
@@ -66,6 +78,14 @@ public class LogsFragment extends Fragment {
         mTxtLog.setTextIsSelectable(true);
         mSVLog = v.findViewById(R.id.svLog);
         mHSVLog = v.findViewById(R.id.hsvLog);
+
+        Bundle arguments = getArguments();
+        String logName = arguments != null ? arguments.getString(KEY_LOG_NAME) : null;
+        if (TextUtils.isEmpty(logName)) {
+            logName = DEFAULT_LOG_NAME;
+        }
+        setupLogPath(logName);
+
 /*
         View scrollTop = v.findViewById(R.id.scroll_top);
         View scrollDown = v.findViewById(R.id.scroll_down);
@@ -105,6 +125,13 @@ public class LogsFragment extends Fragment {
                     }).cancelable(false).show();
         }
         return v;
+    }
+
+    private void setupLogPath(String logName) {
+        mLogName = logName;
+        mFileErrorLog = new File(String.format(XposedApp.BASE_DIR + "log/%s.log", logName));
+        mFileErrorLogOld = new File(String.format(
+                XposedApp.BASE_DIR + "log/%s.log.old", logName));
     }
 
     @Override
@@ -183,7 +210,6 @@ public class LogsFragment extends Fragment {
     }
 
     private void reloadErrorLog() {
-        enableLogAccess();
         new LogsReader().execute(mFileErrorLog);
         mSVLog.post(new Runnable() {
             @Override
@@ -259,7 +285,7 @@ public class LogsFragment extends Fragment {
 
         Calendar now = Calendar.getInstance();
         String filename = String.format(
-                "xposed_%s_%04d%02d%02d_%02d%02d%02d.log", "error",
+                "xposed_%s_%04d%02d%02d_%02d%02d%02d.log", mLogName,
                 now.get(Calendar.YEAR), now.get(Calendar.MONTH) + 1,
                 now.get(Calendar.DAY_OF_MONTH), now.get(Calendar.HOUR_OF_DAY),
                 now.get(Calendar.MINUTE), now.get(Calendar.SECOND));
@@ -328,6 +354,7 @@ public class LogsFragment extends Fragment {
             try {
                 File logfile = log[0];
                 BufferedReader br;
+                enableLogAccess();
                 br = new BufferedReader(new FileReader(logfile));
                 long skipped = skipLargeFile(br, logfile.length());
                 if (skipped > 0) {
@@ -343,7 +370,7 @@ public class LogsFragment extends Fragment {
                 }
                 br.close();
             } catch (IOException e) {
-                llog.append("Cannot read log");
+                llog.append("Cannot read log ");
                 llog.append(e.getMessage());
             }
 

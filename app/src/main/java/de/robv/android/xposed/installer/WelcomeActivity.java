@@ -120,8 +120,9 @@ public class WelcomeActivity extends XposedBaseActivity
     @Override
     protected void onResume() {
         super.onResume();
-        mDrawerLayout.setStatusBarBackgroundColor(darkenColor(XposedApp.getColor(this), 0.85f));
         updateBlackListEntry();
+        updateVerboseLogsEntry();
+        mDrawerLayout.setStatusBarBackgroundColor(darkenColor(XposedApp.getColor(this), 0.85f));
         XposedApp.getPreferences().registerOnSharedPreferenceChangeListener(this);
     }
 
@@ -166,7 +167,12 @@ public class WelcomeActivity extends XposedBaseActivity
             case R.id.drawer_item_4:
                 mPrevSelectedId = itemId;
                 setTitle(R.string.nav_item_logs);
-                navFragment = new LogsFragment();
+                navFragment = LogsFragment.newInstance("error");
+                break;
+            case R.id.drawer_item_8:
+                mPrevSelectedId = itemId;
+                setTitle(R.string.nav_item_verbose_logs);
+                navFragment = LogsFragment.newInstance("all");
                 break;
             case R.id.nav_black_list:
                 mPrevSelectedId = itemId;
@@ -314,11 +320,20 @@ public class WelcomeActivity extends XposedBaseActivity
         if ("black_white_list_enabled".equals(key)) {
             updateBlackListEntry();
         }
+        if ("disable_verbose_log".equals(key)) {
+            updateVerboseLogsEntry();
+        }
     }
 
     private void updateBlackListEntry() {
         mNavigationView.getMenu().findItem(R.id.nav_black_list).setVisible(
                 XposedApp.getPreferences().getBoolean(
                         "black_white_list_enabled", false));
+    }
+
+    private void updateVerboseLogsEntry() {
+        mNavigationView.getMenu().findItem(R.id.drawer_item_8).setVisible(
+                !XposedApp.getPreferences().getBoolean(
+                        "disable_verbose_log", false));
     }
 }

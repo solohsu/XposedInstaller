@@ -1,15 +1,22 @@
 package com.solohsu.android.edxp.manager.fragment;
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.solohsu.android.edxp.manager.R;
 import com.solohsu.android.edxp.manager.adapter.AppHelper;
 
+import java.io.File;
+import java.io.IOException;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.preference.CheckBoxPreference;
+import androidx.preference.Preference;
 import androidx.preference.SwitchPreference;
 import androidx.recyclerview.widget.RecyclerView;
 import de.robv.android.xposed.installer.WelcomeActivity;
+import de.robv.android.xposed.installer.XposedApp;
 
 import static com.solohsu.android.edxp.manager.adapter.AppHelper.setBlackWhiteListEnabled;
 import static com.solohsu.android.edxp.manager.adapter.AppHelper.setBootImageDeoptEnabled;
@@ -54,10 +61,27 @@ public class SettingFragment extends BasePreferenceFragment {
         blackListPref.setChecked(AppHelper.blackWhiteListEnabled());
         blackListPref.setOnPreferenceChangeListener(
                 (preference, newValue) -> setBlackWhiteListEnabled((Boolean) newValue));
-        SwitchPreference enableDeoptPref = findPreference("enable_boot_image_deopt");
+        CheckBoxPreference enableDeoptPref = findPreference("enable_boot_image_deopt");
         enableDeoptPref.setChecked(AppHelper.bootImageDeoptEnabled());
         enableDeoptPref.setOnPreferenceChangeListener(
                 (preference, newValue) -> setBootImageDeoptEnabled((Boolean) newValue));
+
+        final File disableVerboseLogsFlag = new File(XposedApp.BASE_DIR + "conf/disable_verbose_log");
+        CheckBoxPreference prefDisableResources = findPreference("disable_verbose_log");
+        prefDisableResources.setChecked(disableVerboseLogsFlag.exists());
+        prefDisableResources.setOnPreferenceChangeListener((preference, newValue) -> {
+            boolean enabled = (Boolean) newValue;
+            if (enabled) {
+                try {
+                    disableVerboseLogsFlag.createNewFile();
+                } catch (IOException e) {
+                    Toast.makeText(getActivity(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                disableVerboseLogsFlag.delete();
+            }
+            return (enabled == disableVerboseLogsFlag.exists());
+        });
     }
 
 }
