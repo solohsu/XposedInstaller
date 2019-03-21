@@ -18,7 +18,7 @@ android {
         //noinspection OldTargetApi
         targetSdkVersion 25
         versionCode 9
-        versionName "2.2.3"
+        versionName "2.2.4"
         project.ext.set("archivesBaseName", "EdXposedInstaller_v" + versionName)
 
         buildConfigField "String", "APP_VERSION", APP_VERSION
