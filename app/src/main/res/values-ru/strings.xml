@@ -18,28 +18,28 @@
     <string name="nav_item_settings">Настройки</string>
     <string name="nav_item_support">Поддержка</string>
     <string name="nav_item_logs">Логи</string>
-    <string name="nav_item_about">О программе!</string>
+    <string name="nav_item_about">О программе</string>
     <string name="navigation_drawer_open">Открыть меню приложений</string>
     <string name="navigation_drawer_close">Закрыть меню приложений</string>
 
     <!-- Installer tab -->
-    <string name="install">Установить или Обновить</string>
+    <string name="install">Установить или обновить</string>
     <string name="uninstall">Удалить</string>
     <string name="soft_reboot">Быстрая перезагрузка</string>
     <string name="reboot">Полная перезагрузка</string>
     <string name="areyousure">Вы уверены?</string>
     <string name="phone_not_compatible">Xposed (пока) не совместим с версией Android SDK %1$d или архитектурой процессора (%2$s).</string>
-    <string name="reboot_failed">Сбой перезагрузки. Пожалуйста, используйте встроенную функцию перезагрузки на устройстве.</string>
+    <string name="reboot_failed">Сбой перезагрузки. Используйте встроенную функцию перезагрузки на устройстве.</string>
     <string name="auto_flash_note">%s будет прошита автоматически при нажатии "OK".</string>
-    <string name="manual_flash_note">Пожалуйста, прошейте %s с SD-карты для завершения операции.</string>
-    <string name="reboot_confirmation">Хотите перезагрузить устройство сейчас?</string>
-    <string name="reboot_recovery_confirmation">Хотите перезагрузить в режим восстановления?</string>
+    <string name="manual_flash_note">Для завершения операции прошейте %s с SD-карты.</string>
+    <string name="reboot_confirmation">Перезагрузить устройство сейчас?</string>
+    <string name="reboot_recovery_confirmation">Перезагрузить устройство в режим восстановления?</string>
     <string name="install_warning_title">Будьте осторожны!</string>
-    <string name="install_warning">В некоторых случаях, устройство может не загрузиться после установки Xposed.\n\nЕсли вы не знаете что такое \"soft brick\" и \"bootloop\". И не знаете как восстановить систему, <b>НЕ</b> устанавливайте Xposed!\n\nВ любом случае, делайте резервную копию системы."</string>
-    <string name="dont_show_again">Больше не показывать сообщение</string>
-    <string name="install_known_issue">Похоже, присутствует известная несовместимость (\"%s\") с Вашей прошивкой. Пожалуй, Вам не стоит устанавливать Xposed. Нажмите здесь для дополнительной информации.</string>
+    <string name="install_warning">В некоторых случаях устройство может не загрузиться после установки Xposed.\n\nЕсли вы не знаете, что означают слова «soft brick» и «bootloop» (кирпич и бутлуп), и не знаете, как восстановить систему, <b>НЕ</b> устанавливайте Xposed!\n\nИ даже если уверены в себе, не забудьте сделать резервную копию системы."</string>
+    <string name="dont_show_again">Больше не показывать это сообщение</string>
+    <string name="install_known_issue">Похоже, присутствует известная несовместимость (\"%s\") с вашей прошивкой. Пожалуй, вам не стоит устанавливать Xposed. Нажмите здесь для дополнительной информации.</string>
     <string name="installed_lollipop">Xposed Framework версии %s активирован!</string>
-    <string name="installed_lollipop_inactive">Xposed Framework версия %s установлена, но не активирована. Пожалуйста проверьте логи.</string>
+    <string name="installed_lollipop_inactive">Xposed Framework версия %s установлена, но не активирована. Проверьте логи.</string>
     <string name="modules_updates_available">Доступны обновления модуля</string>
 
     <!-- File operations -->
@@ -61,7 +61,7 @@
     <string name="file_creating_directory">Создание каталога %s&#8230;</string>
     <string name="file_create_directory_failed">Невозможно создать каталог %s</string>
     <string name="file_writing_recovery_command">Запись команды восстановления&#8230;</string>
-    <string name="file_writing_recovery_command_failed">Запись команды восстановления не удалась. Пожалуйста, используйте другой метод установки.</string>
+    <string name="file_writing_recovery_command_failed">Запись команды восстановления не удалась. Используйте другой метод установки.</string>
     <string name="file_done">Готово! Изменения станут активными после перезагрузки.</string>
 
     <!-- Modules tab -->
@@ -273,7 +273,7 @@
     <string name="compatibility">Совместимость</string>
     <string name="details">Детали</string>
     <string name="look_and_feel">Попробовать</string>
-    <string name="support_xda">Поддержка на XDA форуме</string>
+    <string name="support_xda">Поддержка на форуме XDA</string>
     <string name="android_sdk">Android %1$s %2$s (API %3$d)</string>
     <string name="later">Позже</string>
     <string name="save">Сохранить</string>
@@ -283,7 +283,7 @@
     <string name="cache_cleaned">Кеш приложения(й) очищен. Требуется перезагрузка</string>
     <string name="update_download_list">Потяните вниз, чтобы обновить список модулей</string>
     <string name="no_connection_available">Нет подключения</string>
-    <string name="not_logcat">Если вас попросили Logcat с Android, тут не верный раздел. Это логи от Xposed; Если вам нужен Logcat, то на XDA или 4pda вы можете найти то, что вам нужно</string>
+    <string name="not_logcat">Если вас попросили прислать Logcat с Android, вы ищете не там. Здесь логи Xposed. О том, как получить Logcat, можно почитать на XDA или 4pda.</string>
     <string name="force_english">Английский язык</string>
     <string name="warning_language">Игнорировать язык системы и использовать английский. Нужен перезапуск приложения!</string>
     <string name="not_flashable_inapp">Этот zip-файл не может быть прошит в приложении. Автоматическая установка через рекавери</string>
@@ -303,12 +303,12 @@
     <string name="install_load_apk">Установка %s</string>
 
     <string name="rovo89_summary">Главный разработчик Xposed</string>
-    <string name="tungstwenty_summary">Помог с большим вкладом, как в коде, так и мыслями</string>
+    <string name="tungstwenty_summary">Оказал большую помощь как с кодом, так и с идеями</string>
     <string name="dvdandroid_summary">Разработчик мода Xposed Installer</string>
     <string name="biohazard_summary">Помог с реализацией Material Design</string>
-    <string name="unstable_build">Это нестабильная сборка. Ставите ее на свой страх и риск.</string>
+    <string name="unstable_build">Это нестабильная сборка. Установка на свой страх и риск.</string>
     <string name="alt_download_method">Альтернативный способ загрузки</string>
-    <string name="alt_download_method_summ">Включайте если получаете проблемы при загрузке модулей</string>
+    <string name="alt_download_method_summ">Отметьте, если при загрузке модулей возникают проблемы</string>
 
     <string name="known_issue_wrong_base_directory">Основной каталог ошибочный: %1$s</string>
     <string name="known_issue_missing_base_directory">Основной каталог отсутсвует</string>
@@ -320,7 +320,7 @@
     <string name="verified_boot_deactivated">Проверка загрузки отключена</string>
     <string name="verified_boot_active">Проверка загрузки включена</string>
     <string name="verified_boot_explanation">Проверка загрузки (dm-verity) предотвращает загрузку устройства, если системный раздел изменен.\n<b>Установка Xposed не рекомендуется!</b></string>
-    <string name="ignore_chinese">Китайские иероглифы</string>
-    <string name="ignore_chinese_summary">Скрыть китайские модули в \"Поиск модулей\". Модули по-прежнему доступны через иконку поиска. Включение настройки может привести к низкой производительности.</string>
+    <string name="ignore_chinese">Фильтровать иероглифы</string>
+    <string name="ignore_chinese_summary">В «Поиске модулей» не показывать модули на китайском языке. Модули останутся доступны через иконку поиска. Включение этой опции может привести к низкой производительности.</string>
 
 </resources>
