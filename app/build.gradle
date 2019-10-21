@@ -17,8 +17,8 @@ android {
         minSdkVersion 21
         //noinspection OldTargetApi
         targetSdkVersion 25
-        versionCode 10
-        versionName "2.2.4"
+        versionCode 11
+        versionName "2.2.5"
         project.ext.set("archivesBaseName", "EdXposedInstaller_v" + versionName)
 
         buildConfigField "String", "APP_VERSION", APP_VERSION

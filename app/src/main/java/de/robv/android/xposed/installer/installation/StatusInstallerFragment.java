@@ -87,7 +87,7 @@ public class StatusInstallerFragment extends Fragment {
     public static void setUpdate(final String link, final String changelog) {
         mUpdateLink = link;
 
-        mUpdateView.setVisibility(View.VISIBLE);
+//        mUpdateView.setVisibility(View.VISIBLE);
         mUpdateButton.setVisibility(View.VISIBLE);
         mUpdateButton.setOnClickListener(new View.OnClickListener() {
             @Override
