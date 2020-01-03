@@ -37,9 +37,9 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.zip.GZIPInputStream;
 
 import de.robv.android.xposed.installer.DownloadFragment;
-import de.robv.android.xposed.installer.activity.PingActivity;
 import de.robv.android.xposed.installer.WelcomeActivity;
 import de.robv.android.xposed.installer.XposedApp;
+import de.robv.android.xposed.installer.activity.PingActivity;
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
 import de.robv.android.xposed.installer.repo.ReleaseType;
@@ -51,7 +51,7 @@ import de.robv.android.xposed.installer.util.DownloadsUtil.SyncDownloadInfo;
 
 public class RepoLoader {
     private static final int UPDATE_FREQUENCY = 24 * 60 * 60 * 1000;
-    public static final String DEFAULT_REPOSITORIES = XposedApp.getPreferences().getBoolean("custom_list", true) ? "http://edxp.meowcat.org/repo/full.xml.gz" : "https://dl-xda.xposed.info/repo/full.xml.gz";
+    public static final String DEFAULT_REPOSITORIES = "https://dl-xda.xposed.info/repo/full.xml.gz";
     private static RepoLoader mInstance = null;
     private final List<RepoListener> mListeners = new CopyOnWriteArrayList<>();
     private final Map<String, ReleaseType> mLocalReleaseTypesCache = new HashMap<>();

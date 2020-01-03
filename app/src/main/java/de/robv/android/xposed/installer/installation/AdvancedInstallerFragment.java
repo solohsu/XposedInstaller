@@ -1,9 +1,7 @@
 package de.robv.android.xposed.installer.installation;
 
 import android.annotation.SuppressLint;
-import android.content.SharedPreferences;
 import android.os.AsyncTask;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Looper;
 import android.text.TextUtils;
@@ -23,11 +21,9 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import com.afollestad.materialdialogs.MaterialDialog;
-import com.annimon.stream.Stream;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.android.material.tabs.TabLayout;
 import com.google.gson.Gson;
-import com.solohsu.android.edxp.manager.BuildConfig;
 import com.solohsu.android.edxp.manager.R;
 
 import java.io.IOException;
@@ -37,14 +33,13 @@ import java.util.List;
 import java.util.Objects;
 
 import de.robv.android.xposed.installer.XposedApp;
-import de.robv.android.xposed.installer.activity.PingActivity;
 import de.robv.android.xposed.installer.util.AssetUtil;
 import de.robv.android.xposed.installer.util.NavUtil;
 import de.robv.android.xposed.installer.util.RootUtil;
+import de.robv.android.xposed.installer.util.json.FrameWorkTabs;
 import de.robv.android.xposed.installer.util.json.JSONUtils;
-import de.robv.android.xposed.installer.util.json.XposedTab;
-
-import static android.content.Context.MODE_PRIVATE;
+import de.robv.android.xposed.installer.util.json.Sandhook;
+import de.robv.android.xposed.installer.util.json.Yahfa;
 
 public class AdvancedInstallerFragment extends Fragment {
 
@@ -71,7 +66,7 @@ public class AdvancedInstallerFragment extends Fragment {
         mTabLayout.setupWithViewPager(mPager);
 
         setHasOptionsMenu(true);
-        new JSONParser().execute();
+        new TabsLoader().execute();
 
         if (!XposedApp.getPreferences().getBoolean("hide_install_warning", false)) {
             final View dontShowAgainView = inflater.inflate(R.layout.dialog_install_warning, null);
@@ -84,20 +79,6 @@ public class AdvancedInstallerFragment extends Fragment {
                         dialog.dismiss();
                     })
                     .setPositiveButton(android.R.string.ok, (dialog, which) -> dialog.dismiss()).show();
-
-//            new MaterialDialog.Builder(getActivity())
-//                    .title(R.string.install_warning_title)
-//                    .customView(dontShowAgainView, false)
-//                    .positiveText(android.R.string.ok)
-//                    .callback(new MaterialDialog.ButtonCallback() {
-//                        @Override
-//                        public void onPositive(MaterialDialog dialog) {
-//                            super.onPositive(dialog);
-//                            CheckBox checkBox = dontShowAgainView.findViewById(android.R.id.checkbox);
-//                            if (checkBox.isChecked())
-//                                XposedApp.getPreferences().edit().putBoolean("hide_install_warning", true).apply();
-//                        }
-//                    }).cancelable(false).show();
         }
 
         return view;
@@ -114,10 +95,6 @@ public class AdvancedInstallerFragment extends Fragment {
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_installer, menu);
-        if (Build.VERSION.SDK_INT < 26) {
-            menu.findItem(R.id.dexopt_all).setVisible(false);
-            menu.findItem(R.id.speed_all).setVisible(false);
-        }
     }
 
     @Override
@@ -317,94 +294,27 @@ public class AdvancedInstallerFragment extends Fragment {
     }
 
     @SuppressLint("StaticFieldLeak")
-    public class UpdatePush extends AsyncTask<Void, Void, Boolean> {
-
-        private String newApkVersion = null;
-        private String newApkLink = null;
-        private String newApkChangelog = null;
+    public class TabsLoader extends AsyncTask<Void, Void, Boolean> {
 
         @Override
         protected Boolean doInBackground(Void... voids) {
             try {
-                String unOfficialLink = JSONUtils.getFileContent(PingActivity.getMaterialApkLink());
-                final JSONUtils.UNOFFICIAL_UPDATE updateJson = new Gson().fromJson(unOfficialLink, JSONUtils.UNOFFICIAL_UPDATE.class);
-                newApkVersion = updateJson.version;
-                newApkLink = updateJson.link;
-                newApkChangelog = updateJson.changes;
+                String s = JSONUtils.getFileContent(JSONUtils.JSON_LINK);
+                final FrameWorkTabs tabs = new Gson().fromJson(s, FrameWorkTabs.class);
+                tabsAdapter.addFragment("Yahfa", new AntiViolenceFragment(tabs, Yahfa.class));
+                tabsAdapter.addFragment("Sandhook", new AntiViolenceFragment(tabs, Sandhook.class));
+                return true;
             } catch (IOException e) {
                 e.printStackTrace();
                 return false;
             }
-            return null;
         }
 
         @Override
         protected void onPostExecute(Boolean aBoolean) {
             super.onPostExecute(aBoolean);
             try {
-                if (newApkVersion == null) return;
-                SharedPreferences prefs;
-                try {
-                    prefs = getContext().getSharedPreferences(getContext().getPackageName() + "_preferences", MODE_PRIVATE);
-                    prefs.edit().putString("changelog_" + newApkVersion, newApkChangelog).apply();
-                } catch (NullPointerException ignored) {
-                }
-                String a = BuildConfig.VERSION_NAME;
-                String b = newApkVersion;
-                if (!a.equals(b)) {
-                    StatusInstallerFragment.setUpdate(newApkLink, newApkChangelog, newApkVersion);
-                }
-            } catch (Exception ignored) {
-            }
-        }
-    }
-
-    @SuppressLint("StaticFieldLeak")
-    private class JSONParser extends AsyncTask<Void, Void, Boolean> {
-
-        private boolean noZips = false;
-
-        @Override
-        protected Boolean doInBackground(Void... params) {
-            try {
-                String originalJson;
-                if (!TextUtils.isEmpty(JSON_DATA)) {
-                    originalJson = JSON_DATA; //直接加载之前加载过的数据
-//                    Log.e("JSONParser", "Through The Previous State");
-                } else {
-                    originalJson = JSONUtils.getFileContent(PingActivity.getFrameWorkLink()); //通过网络更新数据
-                    JSON_DATA = originalJson;
-//                    Log.e("JSONParser", originalJson);
-                }
-                String newJson = JSONUtils.listZip();
-                String jsonString = originalJson.replace("%XPOSED_ZIP%", newJson);
-                final JSONUtils.XposedJson xposedJson = new Gson().fromJson(jsonString, JSONUtils.XposedJson.class);
-                List<XposedTab> tabs = Stream.of(xposedJson.tabs)
-                        .filter(value -> value.sdks.contains(Build.VERSION.SDK_INT)).toList();
-
-                noZips = tabs.isEmpty();
-
-                for (XposedTab tab : tabs) {
-                    tabsAdapter.addFragment(tab.name, BaseAdvancedInstaller.newInstance(tab));
-                }
-                return true;
-            } catch (Exception e) {
-                e.printStackTrace();
-                Log.e(XposedApp.TAG, "AdvancedInstallerFragment -> " + e.getMessage());
-                return false;
-            }
-        }
-
-        @Override
-        protected void onPostExecute(Boolean result) {
-            super.onPostExecute(result);
-            tabsAdapter.notifyDataSetChanged();
-            try {
-                if (!result) {
-                    StatusInstallerFragment.setError(true/* connection failed */, true /* so no sdks available*/);
-                } else {
-                    StatusInstallerFragment.setError(false /*connection ok*/, noZips /*if counter is 0 there aren't sdks*/);
-                }
+                tabsAdapter.notifyDataSetChanged();
             } catch (Exception ignored) {
             }
         }
@@ -440,5 +350,6 @@ public class AdvancedInstallerFragment extends Fragment {
             return titles.get(position);
         }
     }
+
 
 }

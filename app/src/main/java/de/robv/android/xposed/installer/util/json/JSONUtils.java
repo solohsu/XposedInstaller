@@ -15,7 +15,7 @@ import java.util.regex.Pattern;
 
 public class JSONUtils {
 
-    public static final String JSON_LINK = "http://edxp.meowcat.org/repo/version.json";
+    public static final String JSON_LINK = "https://raw.githubusercontent.com/coxylicacid/Xposed-Fast-Repo/master/versions.json" + "?token=" + Math.floor((Math.random() * 10000000) + 1);
     public static final String UNOFFICIAL_UPDATE_LINK = "https://raw.githubusercontent.com/coxylicacid/Xposed-Fast-Repo/master/update/update.json" + "?token=" + Math.floor((Math.random() * 10000000) + 1);
     public static final String PLANS_LINK = "https://raw.githubusercontent.com/coxylicacid/Xposed-Fast-Repo/master/update/plans.json";
 
@@ -75,7 +75,6 @@ public class JSONUtils {
 
         newJson = new StringBuilder(newJson.substring(0, newJson.length() - 1));
         newJson.append("]");
-
         return newJson.toString();
     }
 

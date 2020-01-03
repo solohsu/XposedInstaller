@@ -423,7 +423,7 @@
     <string name="xposed_install_helper_info">We have detected that you have not installed any xposed framework at present. If you need our installation guide, please click the installation button on the right</string>
     <string name="install_xp">Install</string>
 
-    <string name="app_ver_code">元旦版本</string>
+    <string name="app_ver_code">Anti Violence</string>
     <string name="xp_not_active_info">检测到您目前的Xposed状态为未启用/未激活状态，您可能需要重启或者更换框架再重启（如果您的框架有问题的话）</string>
     <string name="app_stop">停止应用</string>
     <string name="app_launch">打开App</string>

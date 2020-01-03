@@ -81,6 +81,14 @@
     public *;
     private *;
 }
+-keep class de.robv.android.xposed.installer.ModulesBookmark {
+    public *;
+    private *;
+}
+-keep class de.robv.android.xposed.installer.ModulesFragment {
+    public *;
+    private *;
+}
 -keep class com.solohsu.android.edxp.manager.** { *; }
 
 -keep class androidx.constraintlayout.** { *; }

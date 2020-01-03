@@ -37,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 import de.robv.android.xposed.installer.repo.Module;
 import de.robv.android.xposed.installer.repo.ModuleVersion;
@@ -62,12 +63,7 @@ public class ModulesBookmark extends XposedBaseActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+        toolbar.setNavigationOnClickListener(view -> finish());
 
         ActionBar ab = getSupportActionBar();
         if (ab != null) {
@@ -98,7 +94,7 @@ public class ModulesBookmark extends XposedBaseActivity {
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
 
-            mBookmarksPref = getActivity().getSharedPreferences("bookmarks", MODE_PRIVATE);
+            mBookmarksPref = Objects.requireNonNull(getActivity()).getSharedPreferences("bookmarks", MODE_PRIVATE);
             mBookmarksPref.registerOnSharedPreferenceChangeListener(this);
         }
 

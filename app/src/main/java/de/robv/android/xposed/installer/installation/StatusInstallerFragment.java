@@ -347,13 +347,13 @@ public class StatusInstallerFragment extends Fragment {
                 helpertext.setText(getString(R.string.xp_not_active_info));
                 helperButton.setText(R.string.reboot);
                 helperButton.setOnClickListener(v1 -> {
-//                    if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
-//                        MD2Dialog.create(requireActivity())
-//                                .title(R.string.reboot).msg(R.string.areyousure).simpleCancel(android.R.string.cancel)
-//                                .onConfirmClick(android.R.string.yes, (view, dialog) -> RootUtil.reboot(RootUtil.RebootMode.NORMAL, requireContext())).show();
-//                    } else {
-//                        RootUtil.reboot(RootUtil.RebootMode.NORMAL, requireContext());
-//                    }
+                    if (XposedApp.getPreferences().getBoolean("confirm_reboots", true)) {
+                        MD2Dialog.create(requireActivity())
+                                .title(R.string.reboot).msg(R.string.areyousure).simpleCancel(android.R.string.cancel)
+                                .onConfirmClick(android.R.string.yes, (view, dialog) -> RootUtil.reboot(RootUtil.RebootMode.NORMAL, requireContext())).show();
+                    } else {
+                        RootUtil.reboot(RootUtil.RebootMode.NORMAL, requireContext());
+                    }
                     Intent i = new Intent(requireActivity(), XposedGuideActivity.class);
                     i.putExtra("guide_fragment", XposedApp.Constant.NOT_ACTIVE_HELP_GUIDE);
                     startActivity(i);
@@ -396,9 +396,9 @@ public class StatusInstallerFragment extends Fragment {
             panelView.setImageBitmap(panel_bg);
             int color;
             if (XposedApp.getPreferences().getBoolean("is_dark_panel_background", true)) {
-                color = 0xFF323232;
-            } else {
                 color = 0xFFFFFFFF;
+            } else {
+                color = 0xFF323232;
             }
             helpertext.setTextColor(color);
             installStatus.setTextColor(color);
