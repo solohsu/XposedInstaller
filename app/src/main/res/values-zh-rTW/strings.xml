@@ -17,7 +17,8 @@
     <string name="nav_item_download">下載</string>
     <string name="nav_item_settings">設定</string>
     <string name="nav_item_support">支援</string>
-    <string name="nav_item_logs">日誌</string>
+    <string name="nav_item_logs">模組日誌</string>
+    <string name="nav_item_verbose_logs">詳細日誌</string>
     <string name="nav_item_about">關於</string>
     <string name="navigation_drawer_open">開啟抽屜式導航欄</string>
     <string name="navigation_drawer_close">關閉抽屜式導航欄</string>
@@ -179,7 +180,6 @@
     <string name="download_no_valid_apk">下載的檔案不是有效 APK (或不相容)</string>
     <string name="download_incorrect_package_name">檔案包名稱不正確 (下載： %1$s, 預期： %2$s)</string>
     <string name="download_running">正在下載</string>
-    <string name="download_progress">%1$,d / %2$,d kB</string>
 
     <!-- RepoLoader -->
     <string name="repo_download_failed_http">下載 %1$s 時出錯：%2$d (%3$s)</string>
@@ -269,8 +269,6 @@
     <string name="confirm_reboots">重新啟動確認</string>
     <string name="skip_xposedminversion_check">略過 \'Xposed 最低版本\' 檢查</string>
     <string name="skip_xposedminversion_check_summ">略過模組 \'Xposed 最低版本\' 檢查</string>
-
-
     <string name="compatibility">相容性</string>
     <string name="details">細節</string>
     <string name="look_and_feel">界面外觀</string>
@@ -295,5 +293,60 @@
     <string name="flash_error_invalid_zip">不是可刷入的ZIP檔案</string>
     <string name="flash_error_not_flashable_in_app">這個檔案僅能在 Recovery 模式下刷入</string>
     <string name="flash_error_default">發生錯誤 %d</string>
+    <string name="installation_error">安裝錯誤</string>
+    <string name="installation_successful">安裝成功</string>
+    <string name="installation_successful_message">%s 已成功安裝</string>
+    <string name="installation_error_message">%1$s 安裝失敗 (%2$s)</string>
+    <string name="installation_apk_normal">一般安裝 APK</string>
+    <string name="install_load">安裝中…</string>
+    <string name="install_load_apk">安裝中 %s</string>
+
+    <string name="rovo89_summary">Xposed 的主創人員</string>
+    <string name="tungstwenty_summary">在代碼和想法方面，提供許多貢獻幫助</string>
+    <string name="dvdandroid_summary">Xposed 安裝程序的建立者</string>
+    <string name="biohazard_summary">幫助實現 Material Design</string>
+    <string name="unstable_build">這是一個不穩定的版本，安裝它需要您自擔風險。</string>
+    <string name="alt_download_method">替代下載方法</string>
+    <string name="alt_download_method_summ">如果在下載模組時遇到問題，請選取此選項</string>
+
+    <string name="known_issue_wrong_base_directory">基礎目路錯誤： %1$s</string>
+    <string name="known_issue_missing_base_directory">缺少基礎目錄</string>
+    <string name="installer_needs_update">%1$s 需要更新</string>
+
+    <string name="dexopt_now">立即優化程式</string>
+    <string name="this_may_take_a_while">將會等一段時間。</string>
+    <string name="done">完成！</string>
+    <string name="verified_boot_deactivated">啟動驗證已停用</string>
+    <string name="verified_boot_active">啟動驗證已啟用</string>
+    <string name="verified_boot_explanation">如果修改了系統分區，則啟動驗證（dm-verity）會阻止設備引導。\n<b>建議不要安裝 Xposed！</b></string>
+    <string name="ignore_chinese">忽略中文字元</string>
+    <string name="ignore_chinese_summary">隱藏下載列表中的中文模組。模組仍能被搜尋。啟用此選項可能會導致性能降低。</string>
+
+    <!-- EdXp related -->
+    <string name="nav_title_black_list">黑/白名單</string>
+    <string name="nav_title_settings">EdXp 設定</string>
+    <string name="white_list_mode_title">白名單模式</string>
+    <string name="nav_title_compat_list">相容模式</string>
+    <string name="title_white_list">白名單</string>
+    <string name="title_black_list">黑名單</string>
+    <string name="add_package_failed">修改失敗，請檢查 Root 權限</string>
+    <string name="mode_change_failed">切換模式失敗，請檢查 Root 權限</string>
+    <string name="menu_title_compile_reset">清除已編譯的檔案</string>
+    <string name="menu_title_compile_speed">強制以 Speed 模式編譯</string>
+    <string name="compile_reset_msg">清除中…</string>
+    <string name="compile_speed_msg">編譯中…</string>
+    <string name="app_source_code_title">App 原始碼</string>
+    <string name="edxp_source_code_title">EdXposed 原始碼</string>
+    <string name="open_link_failed_toast">無法找到可以打開網址的程式</string>
+    <string name="pref_title_black_white_list">黑/白名單</string>
+    <string name="pref_title_dynamic_modules">即時模組列表</string>
+    <string name="pref_black_white_list_summary">(重啟後生效) 注意：使用黑/白名單可能會導致某些系統全部模組不能正常工作。</string>
+    <string name="pref_dynamic_modules_summary">(重啟後生效) 啟用後，每個APP進程啟動時重新載入最新的模組列表。</string>
+    <string name="title_compat_list">相容模式</string>
+    <string name="menu_title_compat_mode">關於相容模式</string>
+    <string name="pref_title_enable_boot_image_deopt">去除系統程式碼優化</string>
+    <string name="pref_enable_boot_image_deopt_summary">(重啟後生效) 取消系統程式碼的優化能使所有系統方法都可以被hook到，但是會降低系統流暢度。主要用於對比測試某个方法無法hook到是否是系統優化導致。</string>
+    <string name="pref_title_disable_verbose_log">停用詳細日誌</string>
+    <string name="pref_disable_verbose_log_summary">下一次啟動時將不再記錄詳細日誌。</string>
 
 </resources>
